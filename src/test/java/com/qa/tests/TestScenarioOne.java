@@ -37,38 +37,38 @@ public class TestScenarioOne extends TestBase{
 	
 	@Test(priority = 0)
 	public static void loginPageTitleCheck() {
-		log.info("loginPageTitleCheck method is started");
+		System.out.println("loginPageTitleCheck method is started");
 		String pageTitle = loginPage.LoginPageTitle();
 		try {
 		Assert.assertEquals(pageTitle, prop.getProperty("pageTitle"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("loginPageTitleCheck method ends");
+		System.out.println("loginPageTitleCheck method ends");
 	}
 
 	@Test (priority = 1)
 	public void loginUserConfirmation() {
-		log.info("loginUserConfirmation method is started");
+		System.out.println("loginUserConfirmation method is started");
 		String loginUsr = loginPage.userLogin().homePageTitleTest();
 		try {
 		Assert.assertEquals(loginUsr, prop.getProperty("loginName"));
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
-		log.info("loginUserConfirmation method ends");
+		System.out.println("loginUserConfirmation method ends");
 	}
 
 	@Test (priority = 2)
 	public void openDirectoryPage() {
-		log.info("openDirectoryPage method is started");
+		System.out.println("openDirectoryPage method is started");
 		loginPage.userLogin().clickDirectory();
-		log.info("openDirectory method ends");
+		System.out.println("openDirectory method ends");
 	}
 
 	@Test (priority = 3, dataProvider ="validTestData")
 	public void validDataSearch(String empName, String jobTitle, String location) {
-		log.info("validDataSearch method is started");
+		System.out.println("validDataSearch method is started");
 		directoryPage = loginPage.userLogin().clickDirectory();
 		directoryPage.directorySearch(empName, jobTitle, location);
 		String searchResult = directoryPage.searchResults().trim();
@@ -77,12 +77,12 @@ public class TestScenarioOne extends TestBase{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("validDataSearch method ends");
+		System.out.println("validDataSearch method ends");
 	}
 	
 	@Test (priority = 4, dataProvider ="inValidTestData")
 	public void invalidDataSearch(String empName, String jobTitle, String location) {
-		log.info("invalidDataSearch method is started");
+		System.out.println("invalidDataSearch method is started");
 		directoryPage = loginPage.userLogin().clickDirectory();
 		directoryPage.directorySearch(empName, jobTitle, location);
 		String searchResult = directoryPage.searchResults().trim();
@@ -91,7 +91,7 @@ public class TestScenarioOne extends TestBase{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("invalidDataSearch method ends");
+		System.out.println("invalidDataSearch method ends");
 	}
 	
 	@DataProvider(name = "validTestData")
@@ -109,6 +109,6 @@ public class TestScenarioOne extends TestBase{
 	@AfterMethod
 	public void tearDown() {
 		driver.close();
-		log.info("Browser driver is closed");
+		System.out.println("Browser driver is closed");
 	}
 }

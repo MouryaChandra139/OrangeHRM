@@ -32,31 +32,31 @@ public class TestScenarioTwo extends TestBase{
 
 	@Test(priority = 0)
 	public static void loginPageTitleCheck() {
-		log.info("loginPageTitleCheck method is started");
+		System.out.println("loginPageTitleCheck method is started");
 		String pageTitle = loginPage.LoginPageTitle();
 		try {
 		Assert.assertEquals(pageTitle, prop.getProperty("pageTitle"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("loginPageTitleCheck method ends");
+		System.out.println("loginPageTitleCheck method ends");
 	}
 	
 	@Test (priority = 1)
 	public void loginUserConfirmation() {
-		log.info("loginUserConfirmation method is started");
+		System.out.println("loginUserConfirmation method is started");
 		String loginUsr = loginPage.userLogin().homePageTitleTest();
 		try {
 			Assert.assertEquals(loginUsr, prop.getProperty("loginName"));
 		}catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
-		log.info("User login successfully");
+		System.out.println("User login successfully");
 	}
 
 	@Test (priority = 2, dataProvider = "validUserData", enabled = true)
 	public void addNewEmployeeData(String firstNm, String lastNm, String empID, String usrNm, String usrPwd, String confirmPwd) throws Exception {
-		log.info("addNewEmployeeData method is started");
+		System.out.println("addNewEmployeeData method is started");
 		employeeListPage = loginPage.userLogin().clickpimLink();
 		employeeListPage.addNewEmployee(firstNm, lastNm, empID, usrNm, usrPwd, confirmPwd);
 		employeeListPage.employeeSearch(empID);
@@ -66,12 +66,12 @@ public class TestScenarioTwo extends TestBase{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("addNewEmployeeData method is ends");
+		System.out.println("addNewEmployeeData method is ends");
 	}
 
 	@Test (priority = 3, dataProvider = "inValidUserData", enabled = true)
 	public void empDataValidation(String firstNm, String lastNm, String empID, String usrNm, String usrPwd, String confirmPwd) throws Exception {
-		log.info("empDataValidation method is started");
+		System.out.println("empDataValidation method is started");
 		employeeListPage = loginPage.userLogin().clickpimLink();
 		employeeListPage.addNewEmployee(firstNm, lastNm, empID, usrNm, usrPwd, confirmPwd);
 		try {
@@ -79,12 +79,12 @@ public class TestScenarioTwo extends TestBase{
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		log.info("empDataValidation method ends");
+		System.out.println("empDataValidation method ends");
 	}
 
 	@Test (priority = 4, dataProvider = "emmpDeleteData", enabled = true)
 	public void cancelDeleteEmpData(String id) throws Exception {
-		log.info("cancelDeleteEmpData method is started");
+		System.out.println("cancelDeleteEmpData method is started");
 		employeeListPage = loginPage.userLogin().clickpimLink();
 		employeeListPage.employeeSearch(id);
 		employeeListPage.notDeleteEmployeeData();
@@ -94,13 +94,13 @@ public class TestScenarioTwo extends TestBase{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("canelDeleteEmpData method ends");
+		System.out.println("canelDeleteEmpData method ends");
 	}
 
 
 	@Test (priority = 5, dataProvider = "emmpDeleteData", enabled = true)
 	public void deleteEmpData(String id) throws Exception {
-		log.info("deleteEmpData method is started");
+		System.out.println("deleteEmpData method is started");
 		employeeListPage = loginPage.userLogin().clickpimLink();
 		employeeListPage.employeeSearch(id);
 		employeeListPage.deleteEmployeeData();
@@ -110,7 +110,7 @@ public class TestScenarioTwo extends TestBase{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info("deleteEmpData method ends");
+		System.out.println("deleteEmpData method ends");
 	}
 
 	@DataProvider(name = "validUserData")
@@ -143,6 +143,6 @@ public class TestScenarioTwo extends TestBase{
 	@AfterMethod
 	public void tearDown() {
 		driver.close();
-		log.info("Browser driver is closed");
+		System.out.println("Browser driver is closed");
 	}
 }

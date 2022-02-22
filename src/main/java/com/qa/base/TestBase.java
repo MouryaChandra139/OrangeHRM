@@ -16,7 +16,6 @@ public class TestBase {
 
 	public static WebDriver driver;
 	public static Properties prop;
-	public static Logger log = Logger.getLogger("TestBase.class");
 	
 	public TestBase() {
 		try {
@@ -26,9 +25,7 @@ public class TestBase {
 			FileInputStream ip = new FileInputStream(currentDir + "\\src\\main\\java\\com\\qa\\config\\config.properties");
 			prop.load(ip);
 			
-			FileInputStream logFile = new FileInputStream(currentDir+"\\src\\main\\resources\\Log4j.properties");
-			prop.load(logFile);
-			BasicConfigurator.configure();
+			
 
 		} catch (FileNotFoundException fe ) {
 			fe.printStackTrace();
@@ -46,7 +43,7 @@ public class TestBase {
 			driver = new FirefoxDriver();
 		}
 		else {
-			log.info("Browser not found");
+			System.out.println("Browser not found");
 		}
 				
 		driver.manage().window().maximize();
