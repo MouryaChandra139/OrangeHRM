@@ -1,6 +1,8 @@
 package com.qa.tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -113,6 +115,19 @@ public class TestScenarioTwo extends TestBase{
 		System.out.println("deleteEmpData method ends");
 	}
 
+	@Test (priority = 6, enabled = true)
+	public void elementAvailable() throws Exception {
+		
+		try {
+			WebElement element = driver.findElement(By.id("txtUsername"));
+			Boolean elementAvailable = element.isDisplayed();
+			Assert.assertFalse(elementAvailable, "Element is avaialble in page");
+		}catch(Exception e) {
+			System.out.println("Item is not available");
+		}
+	}
+
+	
 	@DataProvider(name = "validUserData")
 	public Object[][] validUserData() {
 		return new Object[][] { 

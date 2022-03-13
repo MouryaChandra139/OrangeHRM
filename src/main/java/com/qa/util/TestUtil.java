@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,7 +19,7 @@ import org.openqa.selenium.TakesScreenshot;
 import com.qa.base.TestBase;
 
 public class TestUtil extends TestBase{
-	
+
 	public static String currentDir = System.getProperty("user.dir");
 	public static String TESTDATA_SHEET_PATH = currentDir + "\\src\\main\\java\\com\\qa\\testdata\\OrangeHRMTestData.xlsx";
 	public static Workbook book;
@@ -42,7 +43,7 @@ public class TestUtil extends TestBase{
 	}
 
 	public static Object[][] readTestData(String sheetName) throws IOException {
-		
+		//File file = new File(TESTDATA_SHEET_PATH);
 		inputStream = new FileInputStream(TESTDATA_SHEET_PATH);
 
 		if(fileExtensionName.equals(".xlsx")){
@@ -58,11 +59,11 @@ public class TestUtil extends TestBase{
 			row = sheet.getRow(i+1);
 			for(int j =0; j< row.getLastCellNum();j++) {
 				cell = row.getCell(j);
-				if(cell.getCellType() == Cell.CELL_TYPE_STRING) { 
+				if(cell.getCellType() == CellType.STRING) { 
 					data[i][j] = cell.toString();
-				} else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {					
+				} else if(cell.getCellType() == CellType.NUMERIC) {					
 					data[i][j] = (int)cell.getNumericCellValue();
-				} else if (cell.getCellType() == Cell.CELL_TYPE_BLANK) {
+				} else if (cell.getCellType() == CellType.BLANK) {
 					data[i][j] = "";
 				}
 			}
