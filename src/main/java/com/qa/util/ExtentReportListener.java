@@ -58,7 +58,7 @@ public class ExtentReportListener implements IReporter {
 				if (result.getThrowable() != null) {
 					test.log(status, result.getThrowable());
 				} else {
-					test.log(status, "Test " + status.toString().toLowerCase()
+					test.log(status, "Test is " + status.toString().toLowerCase()
 							+ "ed");
 				}
 
